@@ -1,0 +1,24 @@
+{
+  "name": "velocity",
+  "version": "1.0.0",
+  "description": "",
+  "private": "true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev/web": "turbo --filter=@velocity/web dev",
+    "build/web": "turbo --filter=@velocity/web build start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "VSAL",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "scripts/*"
+  ],
+  "packageManager": "pnpm@12.4.2",
+  "type": "module",
+  "devDependencies": {
+    "turbo": "^2.11.2"
+  }
+}

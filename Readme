@@ -1,0 +1,8 @@
+## Velocity
+- Autonomous AI QA Engineer
+
+Give it the ticket. Let it test.
+
+Velocity is an autonomous AI QA agent designed to perform the work of a manual software tester end-to-end.
+
+Instead of executing predefined Selenium/Playwright scripts, Velocity understands a testing objective, plans what needs to be tested, operates applications through a controlled environment, investigates unexpected behavior, collects evidence, and generates structured test reports and bug reports.

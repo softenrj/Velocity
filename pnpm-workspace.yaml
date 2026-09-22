@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - doc/*
+  - packages/*
+  - scripts/*
+
+
+allowBuilds:
+  unrs-resolver: false
+
+catalog: 
+  
