@@ -5,8 +5,8 @@
   "private": "true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev/web": "turbo --filter=@velocity/web dev",
-    "build/web": "turbo --filter=@velocity/web build start"
+    "dev": "turbo --filter=@velocity/web dev",
+    "build": "turbo --filter=@velocity/web build start"
   },
   "keywords": [],
   "author": "",
