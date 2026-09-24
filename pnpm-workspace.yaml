@@ -13,12 +13,16 @@ allowBuilds:
 catalog:
   '@base-ui/react': ^1.8.0
   '@types/react': ^19.3.0
+  '@velocity/assets': workspace:*
   '@velocity/blocks': workspace:*
+  '@velocity/tailwind-config': workspace:*
   '@velocity/ui': workspace:*
   '@vilocity/ui': workspace:*
   class-variance-authority: ^0.7.1
   cn: ^0.3.2
   lucide-react: ^1.47.0
+  motion: ^13.4.2
+  next: ^16.3.6
   react: ^19.3.0
   react-dom: ^19.3.0
   shadcn: ^4.21.0

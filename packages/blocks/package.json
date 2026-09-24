@@ -17,6 +17,9 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
-    "@velocity/ui": "catalog:"
+    "@velocity/assets": "workspace:^",
+    "@velocity/ui": "catalog:",
+    "motion": "catalog:",
+    "next": "catalog:"
   }
 }
