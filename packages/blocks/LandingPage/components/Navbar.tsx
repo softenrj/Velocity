@@ -7,6 +7,7 @@ import React from 'react'
 import Image from "next/image";
 import { svgLogo } from "@velocity/assets";
 import { easeOut, motion } from "motion/react";
+import Link from 'next/link';
 
 function Navbar() {
     return (
@@ -44,9 +45,11 @@ function Navbar() {
                     <p className='text-white font-lora'>See Demo</p>
                 </button>
 
-                <button className='p-3 border border-black rounded-xs bg-white cursor-pointer'>
-                    <p className='text-black font-lora'>Get Started</p>
-                </button>
+                <Link href={'/chat/'}>
+                    <button className='p-3 border border-black rounded-xs bg-white cursor-pointer'>
+                        <p className='text-black font-lora'>Get Started</p>
+                    </button>
+                </Link>
             </div>
         </div>
     )

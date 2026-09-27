@@ -4,10 +4,12 @@
 import React from 'react'
 import { Badge } from "@velocity/ui";
 import Navbar from './Navbar';
+import Hero from './Hero';
+import Footer from './Footer';
 
 function main() {
     return (
-        <div className='relative min-h-screen w-full bg-white overflow-hidden'>
+        <div className='relative min-h-screen w-full flex flex-col bg-white overflow-hidden'>
             <div className='bg-background h-4' />
             <div
                 className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_top_right,transparent_20%,black_80%)]"
@@ -21,6 +23,10 @@ function main() {
             />
 
             <Navbar />
+            <section className='flex flex-1'>
+                <Hero />
+            </section>
+            <Footer />
         </div>
     )
 }
