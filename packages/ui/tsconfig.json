@@ -11,7 +11,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@ui/*": ["./src/*"]
     }
   },
   "include": ["src/**/*"]

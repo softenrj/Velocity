@@ -19,6 +19,7 @@
   "dependencies": {
     "@velocity/assets": "workspace:^",
     "@velocity/ui": "catalog:",
+    "lucide-react": "^1.48.0",
     "motion": "catalog:",
     "next": "catalog:"
   }
