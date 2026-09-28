@@ -11,7 +11,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@velocity/
 function index({ chatId }: { chatId?: string }) {
     return (
         <div className='h-screen w-full bg-white flex flex-col overflow-hidden'>
-            <div className='bg-background h-4 shrink-0' />
+            <div className='bg-black h-4 shrink-0' />
             <section className='flex flex-1 min-h-0 w-full'>
 
                 <SideNavbar />
