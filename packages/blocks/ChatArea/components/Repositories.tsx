@@ -5,7 +5,7 @@ import React from 'react'
 
 function Repositories() {
     return (
-        <div className='w-full px-3 py-3 flex flex-col flex-1 h-full min-h-0 bg-white'>
+        <div className='w-full px-3 py-3 flex flex-col flex-1 h-full min-h-0 bg-background'>
             <div className='flex justify-between items-center px-2 mb-1 shrink-0'>
                 <span className='text-black font-lora text-xs font-medium tracking-wide'>Repositories</span>
 

@@ -7,7 +7,7 @@ import UserBar from './UserBar'
 
 function ChatPanel() {
     return (
-        <div className='h-full overflow-hidden w-full border-l flex flex-col border-l-black'>
+        <div className='h-full overflow-hidden w-full border-l flex flex-col border-l-black/10'>
             <QuickPanel />
 
             <div className="bg-black/5 h-px w-5/6 mx-auto" />

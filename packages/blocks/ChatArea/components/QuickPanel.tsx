@@ -6,7 +6,7 @@ import React from 'react'
 
 function QuickPanel() {
     return (
-        <div className='w-full px-3 flex flex-col gap-2 py-4 bg-white'>
+        <div className='w-full px-3 flex flex-col gap-2 py-4 bg-background'>
             <Button
                 variant="ghost"
                 className="group flex items-center justify-start gap-3 w-full px-3 py-2.5 rounded-sm bg-neutral-900 text-white hover:bg-neutral-800 focus:bg-neutral-900 active:bg-neutral-900 transition-all shadow-sm"

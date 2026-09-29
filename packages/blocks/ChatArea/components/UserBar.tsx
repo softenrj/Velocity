@@ -6,7 +6,7 @@ import React from 'react'
 
 function UserBar() {
     return (
-        <div className='w-full px-3 py-2 bg-white'>
+        <div className='w-full px-3 py-2 bg-background'>
             <div className='flex items-center justify-between p-2 rounded-sm hover:!bg-black/[0.04] transition-all cursor-pointer group'>
                 <div className='flex items-center gap-3 min-w-0'>
                     <Avatar className='h-7 w-7 shrink-0 rounded-full overflow-hidden'>
