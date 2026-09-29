@@ -33,7 +33,7 @@ function Main() {
   return (
     <div className="flex h-full min-h-screen w-full flex-1 font-lora">
       <section className="flex h-full w-full flex-col items-center justify-center gap-10">
-        <div className="group flex cursor-pointer items-center justify-center">
+        <div className="group flex cursor-pointer items-start justify-center">
           <Asterisk size={30} className=" transition-all duration-200 ease-in-out group-hover:rotate-90" />
 
           <p className="font-lora text-5xl">Velocity</p>
