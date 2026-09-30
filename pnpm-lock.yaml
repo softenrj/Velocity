@@ -252,6 +252,9 @@ importers:
       '@velocity/assets':
         specifier: workspace:^
         version: link:../assets
+      '@velocity/contexts':
+        specifier: 'catalog:'
+        version: link:../contexts
       '@velocity/ui':
         specifier: 'catalog:'
         version: link:../ui
@@ -267,6 +270,21 @@ importers:
     devDependencies:
       '@types/react':
         specifier: 'catalog:'
+        version: 19.3.0
+      react:
+        specifier: ^19.3.0
+        version: 19.3.0
+      react-dom:
+        specifier: ^19.3.0
+        version: 19.3.0(react@19.3.0)
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+
+  packages/contexts:
+    dependencies:
+      '@types/react':
+        specifier: ^19.3.0
         version: 19.3.0
       react:
         specifier: ^19.3.0

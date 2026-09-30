@@ -8,11 +8,14 @@ import Main from "./components/main";
 import SideNavbar from './components/SideNavbar';
 import ChatPanel from './components/ChatPanel';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@velocity/ui';
+import { ChatContextProvider } from "@velocity/contexts";
+
 function index({ chatId }: { chatId?: string }) {
     return (
         <div className='h-screen w-full bg-background flex flex-col overflow-hidden'>
             <div className='bg-black h-4 shrink-0' />
-            <section className='flex flex-1 min-h-0 w-full'>
+            <ChatContextProvider>
+                <section className='flex flex-1 min-h-0 w-full'>
 
                 <SideNavbar />
 
@@ -28,6 +31,7 @@ function index({ chatId }: { chatId?: string }) {
                     </ResizablePanel>
                 </ResizablePanelGroup>
             </section>
+            </ChatContextProvider>
         </div>
     )
 }

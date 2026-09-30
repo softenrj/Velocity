@@ -15,6 +15,7 @@ catalog:
   '@types/react': ^19.3.0
   '@velocity/assets': workspace:*
   '@velocity/blocks': workspace:*
+  '@velocity/contexts': workspace:*
   '@velocity/tailwind-config': workspace:*
   '@velocity/ui': workspace:*
   '@vilocity/ui': workspace:*

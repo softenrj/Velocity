@@ -17,5 +17,8 @@
     "lib": "@ui/lib",
     "hooks": "@ui/hooks"
   },
-  "iconLibrary": "lucide"
+  "iconLibrary": "lucide",
+  "registries": {
+    "@dotmatrix": "https://dotmatrix.zzzzshawn.cloud/r/{name}.json"
+  }
 }

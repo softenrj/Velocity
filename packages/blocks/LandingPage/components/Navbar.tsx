@@ -5,8 +5,8 @@
 
 import React from 'react'
 import Image from "next/image";
-import { svgLogo } from "@velocity/assets";
-import { easeOut, motion } from "motion/react";
+import { pngLogo } from "@velocity/assets";
+import { motion } from "motion/react";
 import Link from 'next/link';
 
 function Navbar() {
@@ -18,13 +18,13 @@ function Navbar() {
                 className='flex items-center gap-1 cursor-pointer w-fit'
             >
                 <div className='relative w-[3em] h-[3em] shrink-0'>
-                    <Image src={svgLogo} alt='velocity' fill className='absolute inset-0' />
+                    <Image src={pngLogo} alt='velocity' fill className='absolute inset-0' />
                 </div>
 
                 <motion.div
                     className="overflow-hidden whitespace-nowrap flex items-center"
                     variants={{
-                        initial: { width: "18px" },
+                        initial: { width: "16px" },
                         hover: { width: "110px" }
                     }}
                     transition={{ type: "keyframes", stiffness: 120, damping: 15 }}

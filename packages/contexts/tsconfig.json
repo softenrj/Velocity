@@ -1,0 +1,14 @@
+{
+    "extends": "../../_tsconfig.base.json",
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "ESNext",
+        "jsx": "react-jsx",
+        "lib": ["DOM"],
+        "allowImportingTsExtensions": true,
+        "strict": true,
+        "noEmit": true,
+        "moduleResolution": "bundler"
+    },
+    "include": ["context/*", "hooks/*"]
+}
