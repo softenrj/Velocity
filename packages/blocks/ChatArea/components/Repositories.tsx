@@ -20,7 +20,7 @@ function Repositories() {
             </div>
 
             <div className='flex flex-col gap-0.5 flex-1 min-h-0 overflow-y-auto pr-1 thin-scrollbar'>
-                {Array.from({ length: 20 }).map((_, i) => (
+                {Array.from({ length: 10 }).map((_, i) => (
                     <div
                         key={i}
                         className='group flex items-center justify-between px-1.5 py-1.5 rounded-sm hover:!bg-black/[0.04] transition-all cursor-pointer'

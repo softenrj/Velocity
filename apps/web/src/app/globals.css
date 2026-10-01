@@ -6,7 +6,8 @@
 @source "../../../../packages/ui/src/";
 
 :root {
-  --background: #FCFCFC;
+  --background: #F2F1ED;
+  --secbg: #F7F7F4;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -30,6 +31,7 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-secbg: var(--secbg);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -90,6 +92,19 @@ body {
 .thin-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #00000011 transparent;
+}
+
+.hide-sb {
+  /* Firefox */
+  scrollbar-width: none;
+  
+  /* IE and Edge */
+  -ms-overflow-style: none;  
+}
+
+/* Chrome, Safari, and Opera */
+.hide-sb::-webkit-scrollbar {
+  display: none;
 }
 
 /* WebKit Browsers (Chrome, Safari, Edge) */

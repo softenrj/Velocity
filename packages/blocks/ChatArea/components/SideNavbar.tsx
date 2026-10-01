@@ -16,7 +16,7 @@ function SideNavbar() {
             </div>
 
             <div className='flex flex-1'>
-                <span className="[writing-mode:sideways-lr] font-lora font-extrabold tracking-wider text-gray-500">Velocity</span>
+                <span className="[writing-mode:sideways-lr] font-lora font-extrabold tracking-wider text-gray-300">Velocity</span>
             </div>
 
             <div className='py-4'>
