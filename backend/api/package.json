@@ -1,0 +1,33 @@
+{
+  "name": "@velocity/api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch --env-file=../../.env server.ts",
+    "build": "tsc",
+    "start": "node --env-file=../../.env dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@types/express": "catalog:",
+    "@types/node": "^26.6.4",
+    "@velocity/database": "catalog:",
+    "express": "catalog:",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/compression": "catalog:",
+    "@types/cors": "catalog:",
+    "@types/morgan": "catalog:",
+    "compression": "catalog:",
+    "cors": "catalog:",
+    "helmet": "catalog:",
+    "morgan": "catalog:"
+  }
+}

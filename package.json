@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "turbo --filter=@velocity/web dev",
     "build": "turbo --filter=@velocity/web build",
-    "start": "turbo --filter=@velocity/web start"
+    "start": "turbo --filter=@velocity/web start",
+    "api/dev": "pnpm --filter=@velocity/api run dev",
+    "api/build": "pnpm --filter=@velocity/api run build",
+    "api/start": "pnpm --filter=@velocity/api run start"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +18,8 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "scripts/*"
+    "scripts/*",
+    "backend/*"
   ],
   "packageManager": "pnpm@12.4.2",
   "type": "module",
