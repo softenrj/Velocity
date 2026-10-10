@@ -32,7 +32,7 @@ export class AuthRegester {
                 userId: user._id,
                 refreshHash: refHash,
                 revoked: null,
-                expireAt: new Date(Date.now() * 7 * 24 * 60 * 60 * 1000)
+                expireAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
             })
 
             const accessToken = AuthUtils.generateAccessToken(String(session._id), String(user._id));

@@ -21,9 +21,8 @@ export class AuthLogin {
                 throw new VelocityError({ statusCode: 402, message: "User not found" });
             }
 
-            const hashPassword = await bcrypt.hash(password, SALT_ROUND);
 
-            const match = await bcrypt.compare(hashPassword, user.password);
+            const match = await bcrypt.compare(password, user.password);
 
             if (!match) {
                 throw new VelocityError({ statusCode: 401, message: "Envalid Password" });
@@ -36,7 +35,7 @@ export class AuthLogin {
                 userId: user._id,
                 refreshHash: refHash,
                 revoked: null,
-                expireAt: new Date(Date.now() * 7 * 24 * 60 * 60 * 1000)
+                expireAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
             })
 
             const accessToken = AuthUtils.generateAccessToken(String(session._id), String(user._id));

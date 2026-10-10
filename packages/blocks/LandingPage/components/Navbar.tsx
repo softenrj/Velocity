@@ -5,7 +5,7 @@
 
 import React from 'react'
 import Image from "next/image";
-import { pngLogo } from "@velocity/assets";
+import { svgLogo } from "@velocity/assets";
 import { motion } from "motion/react";
 import Link from 'next/link';
 
@@ -18,7 +18,7 @@ function Navbar() {
                 className='flex items-center gap-1 cursor-pointer w-fit'
             >
                 <div className='relative w-[3em] h-[3em] shrink-0'>
-                    <Image src={pngLogo} alt='velocity' fill className='absolute inset-0' />
+                    <Image src={svgLogo} alt='velocity' fill className='absolute inset-0' />
                 </div>
 
                 <motion.div
@@ -45,7 +45,7 @@ function Navbar() {
                     <p className='text-white font-lora'>See Demo</p>
                 </button>
 
-                <Link href={'/chat/'}>
+                <Link href={'/register'}>
                     <button className='p-3 border border-black rounded-xs bg-white cursor-pointer'>
                         <p className='text-black font-lora'>Get Started</p>
                     </button>
