@@ -7,6 +7,9 @@ import cors from "cors";
 import compression from "compression";
 import { connectMongooseDatabase } from "@velocity/database/config";
 import dns from "dns";
+import { velocityErrorHandler } from "@velocity/error-handler";
+import cookieparser from "cookie-parser";
+import { defaultRouter } from "./route.js";
 
 dns.setServers(['1.1.1.1', '8.8.8.8']);
 
@@ -18,6 +21,7 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json({}));
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieparser())
 
 app.use(compression());
 app.use(cors({
@@ -35,6 +39,10 @@ app.use(cors({
 }));
 
 connectMongooseDatabase();
+
+app.use('/api/v1', defaultRouter);
+
+app.use(velocityErrorHandler);
 
 app.listen(PORT, () => {
     console.log("[velocity] server is live at Port: ", PORT);

@@ -9,30 +9,39 @@ packages:
 
 
 allowBuilds:
+  bcrypt: set this to true or false
   esbuild: true
   unrs-resolver: false
 
 catalog:
   '@base-ui/react': ^1.8.0
+  '@types/bcrypt': ^6.0.0
   '@types/compression': ^1.8.1
+  '@types/cookie-parser': ^1.4.10
   '@types/cors': ^2.8.19
   '@types/express': ^5.0.6
+  '@types/jsonwebtoken': ^9.0.10
   '@types/morgan': ^1.9.10
   '@types/node': ^26.6.4
   '@types/react': ^19.3.0
   '@velocity/assets': workspace:*
   '@velocity/blocks': workspace:*
   '@velocity/contexts': workspace:*
+  '@velocity/core': workspace:*
   '@velocity/database': workspace:*
+  '@velocity/error-handler': workspace:*
   '@velocity/tailwind-config': workspace:*
   '@velocity/ui': workspace:*
   '@vilocity/ui': workspace:*
+  bcrypt: ^6.0.0
   class-variance-authority: ^0.7.1
   cn: ^0.3.2
   compression: ^1.8.2
+  cookie-parser: ^1.4.7
   cors: ^2.8.6
   express: ^5.2.1
   helmet: ^8.3.0
+  jsonwebtoken: ^9.0.3
   lucide-react: ^1.47.0
   mongoose: ^9.11.1
   morgan: ^1.12.1

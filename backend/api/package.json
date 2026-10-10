@@ -14,9 +14,13 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@types/cookie-parser": "catalog:",
     "@types/express": "catalog:",
     "@types/node": "^26.6.4",
+    "@velocity/core": "catalog:",
     "@velocity/database": "catalog:",
+    "@velocity/error-handler": "catalog:",
+    "cookie-parser": "catalog:",
     "express": "catalog:",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
