@@ -8,11 +8,17 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { pngBLogo, testingLab } from '@velocity/assets'
+import { ArrowRight } from 'lucide-react'
+import { ApiResponse, LOGIN, postApi, REGISTER } from '@velocity/axios'
+import toast from 'react-hot-toast'
+import { useRouter } from "next/navigation";
+import { User } from '../../types/user'
 
 function Main() {
     const [showPassword, setShowPassword] = useState(false)
     const [rememberMe, setRememberMe] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter();
 
     async function handleSubmit(
         event: React.FormEvent<HTMLFormElement>
@@ -25,7 +31,17 @@ function Main() {
             const email = formData.get('email')
             const password = formData.get('password')
 
-            console.log({ email, password, rememberMe })
+            const response = await postApi<ApiResponse<{ user: User, accessToken: string }>>({
+                url: LOGIN,
+                values: { email, password, rm: rememberMe } as any
+            })
+
+            if (response?.success) {
+                toast.success(response.message);
+                localStorage.setItem("@velocity:auth:accessToken", response.data.accessToken);
+                router.replace("/chat")
+            }
+
 
         } finally {
             setIsLoading(false)
@@ -159,27 +175,14 @@ function Main() {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="group mt-1 flex h-10 w-full items-center justify-center gap-2.5 rounded-sm bg-black px-4 text-xs font-medium text-white shadow-md transition-all hover:bg-neutral-800 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:h-11 sm:text-sm"
+                                className="group mt-1 flex h-10 cursor-pointer w-full items-center justify-center gap-2.5 rounded-sm bg-black px-4 text-xs font-medium text-white shadow-md transition-all hover:bg-neutral-800 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:h-11 sm:text-sm"
                             >
                                 <span>
                                     {isLoading ? 'Signing in...' : 'Sign in'}
                                 </span>
 
                                 {!isLoading && (
-                                    <svg
-                                        viewBox="0 0 20 20"
-                                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                                        fill="none"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            d="M4 10H16M10 4L16 10L10 16"
-                                            stroke="currentColor"
-                                            strokeWidth="1.6"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
+                                    <ArrowRight size={16} className='group-hover:translate-x-1 transition-all duration-100 ease-linear' />
                                 )}
                             </button>
                         </form>

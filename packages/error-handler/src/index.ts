@@ -17,6 +17,7 @@ export class VelocityError extends Error {
 }
 
 const velocityErrorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
+    console.log(error.message)
     const statusCode = error instanceof VelocityError ? error.statusCode : 500;
     const message = error?.message ?? "Internal Server Error";
 

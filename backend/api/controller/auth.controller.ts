@@ -6,19 +6,19 @@ import { AuthLogin, AuthRefreshToken, AuthRegester } from "@velocity/core";
 import { VelocityError } from "@velocity/error-handler";
 
 export const login = async (req: Request, res: Response): Promise<void> => {
-    const { email, password } = req.body;
+    const { email, password, rm = false } = req.body;
 
-    const p = await AuthLogin.login(email, password);
+    const p = await AuthLogin.login(email, password, rm);
 
     if (!p) {
         throw new VelocityError({ statusCode: 400, message: "Something Went Wrong" });
     }
 
-    res.cookie("refreshToken", p.accessToken, {
+    res.cookie("refreshToken", p.refressToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV == 'production',
         sameSite: "strict",
-        path: "/auth",
+        path: "/api/v1/user/auth",
         maxAge: 7 * 24 * 60 * 60 * 1000
     })
 
@@ -26,19 +26,19 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 }
 
 export const regester = async (req: Request, res: Response): Promise<void> => {
-    const { email, password, username } = req.body;
+    const { email, password, username, rm = false } = req.body;
 
-    const p = await AuthRegester.regester({ username, email, password });
+    const p = await AuthRegester.regester({ username, email, password, rm });
 
     if (!p) {
         throw new VelocityError({ statusCode: 400, message: "Something Went Wrong" });
     }
 
-    res.cookie("refreshToken", p.accessToken, {
+    res.cookie("refreshToken", p.refressToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV == 'production',
         sameSite: "strict",
-        path: "/auth",
+        path: "/api/v1/user/auth",
         maxAge: 7 * 24 * 60 * 60 * 1000
     })
 
@@ -46,18 +46,16 @@ export const regester = async (req: Request, res: Response): Promise<void> => {
 }
 
 export const refresh = async (req: Request, res: Response): Promise<void> => {
-    const cookies = req.cookies;
-
-    const refreshToken = cookies.refreshToken ?? null;
+    const refreshToken = req.cookies?.refreshToken;
 
     if (!refreshToken) {
-        throw new VelocityError({ statusCode: 400, message: "Envalid Refresh Token " });
+        throw new VelocityError({ statusCode: 401, message: "Envalid Refresh Token " });
     }
 
     const p = await AuthRefreshToken.refresh(refreshToken);
 
     if (!p) {
-        throw new VelocityError({ statusCode: 400, message: "Something Went Wrong" });
+        throw new VelocityError({ statusCode: 401, message: "Something Went Wrong" });
     }
 
 

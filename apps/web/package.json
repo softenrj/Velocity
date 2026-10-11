@@ -11,11 +11,13 @@
   "dependencies": {
     "@velocity/assets": "workspace:*",
     "@velocity/blocks": "catalog:",
+    "@velocity/contexts": "workspace:*",
     "@velocity/tailwind-config": "catalog:",
     "@velocity/ui": "workspace:*",
     "next": "16.3.5",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-hot-toast": "^2.6.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

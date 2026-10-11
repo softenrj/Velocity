@@ -24,18 +24,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser())
 
 app.use(compression());
+
+const allowedOrigins = ["http://localhost:3000"];
 app.use(cors({
-    origin: (origin, cb) => {
-        if (!origin) {
-            return cb(null, false);
-        }
+    origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
 
-        if (![""].includes(origin)) {
-            return cb(new Error("[velocity cors] origin is not allowed!"), false);
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("CORS not allowed for this origin"));
         }
-
-        return origin;
-    }
+    },
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
 connectMongooseDatabase();

@@ -8,12 +8,17 @@ import jwt from "jsonwebtoken";
 const Velocity_Access_Token = process.env.VELOCITY_ACCESS_TOKEN!;
 const Velocity_Refresh_Token = process.env.VELOCITY_Refresh_TOKEN!;
 
+export const SESSION_DURATION = {
+    temporary: 8 * 60 * 60 * 1000,       // 8 hours
+    persistent: 30 * 24 * 60 * 60 * 1000 // 30 days
+} as const;
+
 class AuthUtils {
     public static generateAccessToken = (sid: string, userId: string) => {
         if (!Velocity_Access_Token) {
             throw new VelocityError({ statusCode: 500, message: "Unable to Generate Access Token" });
         }
-        const token = jwt.sign({ sid, sub: userId }, Velocity_Access_Token, { expiresIn: "10m", issuer: "velocity", audience: "velocity-client", subject: userId.toString() });
+        const token = jwt.sign({ sid, sub: userId }, Velocity_Access_Token, { expiresIn: "10m", issuer: "velocity", audience: "velocity-client" });
         return token;
     }
 
@@ -29,7 +34,7 @@ class AuthUtils {
         if (!Velocity_Refresh_Token) {
             throw new VelocityError({ statusCode: 500, message: "Unable to Generate Refresh Token" });
         }
-        const token = crypto.randomBytes(32).toString("hex");
+        const token = crypto.randomBytes(128).toString("hex");
         return token;
     }
 

@@ -7,9 +7,17 @@ import React from 'react'
 import Image from "next/image";
 import { svgLogo } from "@velocity/assets";
 import { motion } from "motion/react";
-import Link from 'next/link';
+import { useAuthContext } from '@velocity/contexts';
+import { useRouter } from 'next/navigation';
 
 function Navbar() {
+    const auth = useAuthContext();
+    const router = useRouter();
+    const getStarted = () => {
+        void auth.initialize(true);
+        router.push('/register')
+    }
+
     return (
         <div className='p-2 relative z-1 flex justify-between items-center'>
             <motion.div
@@ -45,11 +53,9 @@ function Navbar() {
                     <p className='text-white font-lora'>See Demo</p>
                 </button>
 
-                <Link href={'/register'}>
-                    <button className='p-3 border border-black rounded-xs bg-white cursor-pointer'>
-                        <p className='text-black font-lora'>Get Started</p>
-                    </button>
-                </Link>
+                <button className='p-3 border border-black rounded-xs bg-white cursor-pointer' onClick={getStarted}>
+                    <p className='text-black font-lora'>Get Started</p>
+                </button>
             </div>
         </div>
     )

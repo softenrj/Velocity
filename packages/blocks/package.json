@@ -10,16 +10,21 @@
   "author": "",
   "license": "ISC",
   "type": "module",
+  "peerDependencies": {
+    "react-hot-toast": "^2.6.1"
+  },
   "devDependencies": {
     "@types/react": "catalog:",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "typescript": "^7.0.2"
   },
   "dependencies": {
     "@velocity/assets": "workspace:^",
+    "@velocity/axios": "catalog:",
     "@velocity/contexts": "catalog:",
     "@velocity/ui": "catalog:",
+    "axios": "catalog:",
     "lucide-react": "^1.48.0",
     "motion": "catalog:",
     "next": "catalog:"

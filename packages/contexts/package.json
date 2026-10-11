@@ -11,9 +11,15 @@
   "type": "module",
   "dependencies": {
     "@types/react": "^19.3.0",
+    "@velocity/axios": "workspace:*",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "typescript": "^7.0.2"
   },
-  "exports": ["./index.ts"]
+  "peerDependencies": {
+    "react-hot-toast": "^2.6.1"
+  },
+  "exports": [
+    "./index.ts"
+  ]
 }

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LocalFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "@velocity/contexts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,7 +57,15 @@ export default function RootLayout({ children }: LayoutProps) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
+      </body>
     </html>
   );
 }
