@@ -2,9 +2,9 @@
 // See LICENSE for details.
 "use client"
 
-import React from "react";
+import React, { use } from "react";
 import { User } from "../types/user";
-import { ApiResponse, getApi, REFRESH } from "@velocity/axios";
+import { ApiResponse, getApi, REFRESH, USER } from "@velocity/axios";
 import { useRouter } from "next/navigation";
 
 type AuthStatus = | 'loading' | 'authenticated' | 'unauthenticated'
@@ -44,8 +44,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
             if (response?.success) {
                 localStorage.setItem("@velocity:auth:accessToken", response.data.accessToken);
-                setStatus('authenticated');
-                router.push('/chat')
+                const result = await getApi<ApiResponse<{ user: User }>>({
+                    url: USER
+                })
+
+
+                if (result?.success) {
+                    setUser(result.data.user);
+                    setStatus("authenticated");
+                    router.push("/chat");
+                } else {
+                    setStatus('unauthenticated');
+                }
+
             } else {
                 setStatus('unauthenticated');
 
@@ -63,7 +74,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }, [initialize])
 
 
-    return <AuthContext.Provider value={{ user: null, initialize: initialize, logout, logoutAll, status }}>
+    return <AuthContext.Provider value={{ user: user, initialize: initialize, logout, logoutAll, status }}>
         {children}
     </AuthContext.Provider>
 }

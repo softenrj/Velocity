@@ -72,6 +72,14 @@ const getErrorMessage = (error: AxiosError<unknown>): string => {
     return error.message || "The request failed. Please try again.";
 };
 
+const isPublicAuthPage = (): boolean => {
+    if (typeof window === "undefined") return false;
+
+    const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
+
+    return pathname === "/login" || pathname === "/register";
+};
+
 
 defaultApi.interceptors.request.use(
     async (config) => {
@@ -119,7 +127,9 @@ defaultApi.interceptors.response.use(
                                 ? refreshError.message
                                 : "Unable to refresh your session."
                     );
+
                     if (!unauthorizedRedirectScheduled) {
+
                         unauthorizedRedirectScheduled = true;
                         window.location.href = "/";
                     }
@@ -129,14 +139,18 @@ defaultApi.interceptors.response.use(
             }
         }
 
-        if (isUnauthorized) {
-            if (typeof window !== 'undefined') {
-                const currentPage = window.location.pathname.split('/').pop();
-                localStorage.removeItem("@velocity:auth:accessToken");
-                if (!unauthorizedRedirectScheduled && currentPage !== 'login' && currentPage !== 'register') {
-                    unauthorizedRedirectScheduled = true;
-                    window.location.href = "/";
-                }
+        if (isUnauthorized && typeof window !== "undefined") {
+            const isAuthPage = isPublicAuthPage();
+
+            if (isAuthEndpoint(originalRequest?.url) || isAuthPage) {
+                return Promise.reject(error);
+            }
+
+            localStorage.removeItem("@velocity:auth:accessToken");
+
+            if (!unauthorizedRedirectScheduled) {
+                unauthorizedRedirectScheduled = true;
+                window.location.href = "/login";
             }
         }
 

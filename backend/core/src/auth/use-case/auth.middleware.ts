@@ -9,10 +9,11 @@ const Velocity_Access_Token = process.env.VELOCITY_ACCESS_TOKEN!;
 
 interface userJWTPayload extends JwtPayload {
     sid: string;
+    sub: string;
 }
 
 export class AuthMiddleware {
-    public static authMiddleware = async (token: string) => {
+    public static authMiddleware = async (token: string): Promise<{ sid: string, userId: string }> => {
         if (!token) {
             throw new VelocityError({ statusCode: 401, message: "Token is Envalid" });
         }

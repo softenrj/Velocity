@@ -20,6 +20,7 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@tanstack/react-query": "catalog:",
     "@velocity/assets": "workspace:^",
     "@velocity/axios": "catalog:",
     "@velocity/contexts": "catalog:",
