@@ -5,6 +5,7 @@ import { VelocityError } from "@velocity/error-handler";
 import { InitializeChat } from "@velocity/core";
 import { Repositories } from "@velocity/database";
 import mongoose from "mongoose";
+import { sendResponse } from "../types/api.type.js";
 
 export const chatV1 = async (req: Request, res: Response) => {
     const userId = req.userId;
@@ -22,9 +23,23 @@ export const chatV1 = async (req: Request, res: Response) => {
         repositorie = await InitializeChat.initilize(userId, prompt);
     }
     // TODO - generate response
-    response = "yet empty";
+    // SSE event
 
-    res.status(200).json({ success: true, message: "Successfully generated chat", data: { repositorie, response } })
+    res.status(200).json({ success: true, message: "Successfully generated chat", data: { repositorie, jobId: "ram" } })
+}
+
+export const validateSSEEvent = async (req: Request, res: Response): Promise<void> => {
+    // TODO validate using class
+
+    sendResponse(res, 200, { success: 'true', status: 200, message: 'Successfully validated SSE event' })
+}
+
+export const chatStream = async (req: Request, res: Response): Promise<void> => {
+    // TODO - generate response
+    // SSE event
+
+
+    sendResponse(res, 200, { success: 'true', status: 200, message: 'Successfully generated chat' })
 }
 
 export const getRepositories = async (req: Request, res: Response) => {

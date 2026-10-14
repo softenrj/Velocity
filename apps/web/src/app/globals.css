@@ -6,7 +6,7 @@
 @source "../../../../packages/ui/src/";
 
 :root {
-  --background: #F2F1ED;
+  --background: #f8f8f7;
   --secbg: #F7F7F4;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -97,9 +97,9 @@ body {
 .hide-sb {
   /* Firefox */
   scrollbar-width: none;
-  
+
   /* IE and Edge */
-  -ms-overflow-style: none;  
+  -ms-overflow-style: none;
 }
 
 /* Chrome, Safari, and Opera */
