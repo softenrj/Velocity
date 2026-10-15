@@ -25,7 +25,7 @@ app.use(cookieparser())
 
 app.use(compression());
 
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = ["http://localhost:3000", "https://velocitytest.vercel.app"];
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin) return callback(null, true);

@@ -11,7 +11,8 @@
     "api/dev": "pnpm --filter=@velocity/api run dev",
     "api/install": "pnpm --filter=@velocity/api... install --frozen-lockfile",
     "api/build": "turbo run build --filter=@velocity/api...",
-    "api/start": "pnpm --filter=@velocity/api run start"
+    "api/start": "pnpm --filter=@velocity/api run start",
+    "api/start/local": "pnpm --filter=@velocity/api run start/local"
   },
   "keywords": [],
   "author": "",
