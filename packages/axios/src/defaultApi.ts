@@ -4,7 +4,7 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import toast from "react-hot-toast";
 
-const BASE_API_URL = process.env.BASE_API_URL ?? "https://velocity-fwa8.onrender.com";
+const BASE_API_URL = process.env.NODE_ENV == 'production' ? "https://velocitytest.vercel.app/api/v1" : "http://localhost:8000/api/v1";
 
 const defaultApi = axios.create({ baseURL: BASE_API_URL, withCredentials: true });
 let unauthorizedRedirectScheduled = false;
