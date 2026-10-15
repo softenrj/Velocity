@@ -9,7 +9,7 @@
     "build": "turbo --filter=@velocity/web build",
     "start": "turbo --filter=@velocity/web start",
     "api/dev": "pnpm --filter=@velocity/api run dev",
-    "api/build": "pnpm --filter=@velocity/api run build",
+    "api/build": "turbo run build --filter=@velocity/api...",
     "api/start": "pnpm --filter=@velocity/api run start"
   },
   "keywords": [],
