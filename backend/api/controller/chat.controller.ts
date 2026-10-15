@@ -10,7 +10,7 @@ import { sendResponse } from "../types/api.type.js";
 export const chatV1 = async (req: Request, res: Response) => {
     const userId = req.userId;
     const { prompt } = req.body;
-    const chatId = req.params.chatId;
+    const repositoriesId = req.params.repositoriesId;
 
     if (!userId) {
         throw new VelocityError({ statusCode: 401, message: "UnAuthorized Access" });
@@ -19,7 +19,7 @@ export const chatV1 = async (req: Request, res: Response) => {
     let repositorie = null;
     let response = "yet empty";
 
-    if (!chatId) {
+    if (!repositoriesId) {
         repositorie = await InitializeChat.initilize(userId, prompt);
     }
     // TODO - generate response

@@ -124,3 +124,91 @@ body {
 .thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #333333;
 }
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+.ai-border {
+  position: relative;
+  --ai-ink: 10 10 10;
+  /* comet color (rgb channels) */
+  --ai-speed: 2.6s;
+  --ai-thickness: 1.25px;
+}
+
+.ai-border::before,
+.ai-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: var(--ai-thickness);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: border-spin var(--ai-speed) linear infinite;
+
+  /* ring-only mask */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  /* long eased tail -> bright head, plus a faint ghost on the opposite side */
+  background: conic-gradient(from var(--border-angle),
+      transparent 0deg,
+      transparent 200deg,
+      rgb(var(--ai-ink) / 0.04) 225deg,
+      rgb(var(--ai-ink) / 0.12) 260deg,
+      rgb(var(--ai-ink) / 0.30) 300deg,
+      rgb(var(--ai-ink) / 0.60) 335deg,
+      rgb(var(--ai-ink) / 0.95) 356deg,
+      transparent 360deg);
+}
+
+/* soft halo behind the comet */
+.ai-border::after {
+  inset: -2px;
+  padding: 3px;
+  filter: blur(7px);
+  animation-delay: 0s;
+  mix-blend-mode: multiply;
+}
+
+.ai-border::after {
+  opacity: 0;
+}
+
+.ai-border[data-active="true"]::before {
+  opacity: 1;
+}
+
+.ai-border[data-active="true"]::after {
+  opacity: 0.35;
+}
+
+/* dark surfaces: flip the comet to milk */
+.dark .ai-border {
+  --ai-ink: 245 243 238;
+}
+
+.dark .ai-border::after {
+  mix-blend-mode: screen;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ai-border::before,
+  .ai-border::after {
+    animation-duration: 8s;
+  }
+}

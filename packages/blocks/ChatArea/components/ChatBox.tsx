@@ -7,9 +7,19 @@ import { useChatContext } from '@velocity/contexts';
 import { Field, FieldLabel, FieldDescription, Textarea } from '@velocity/ui';
 import { ArrowUp, Asterisk, Bug, Plus } from 'lucide-react';
 import { AnimatePresence, motion } from "motion/react";
+import { useState } from 'react';
 
-function ChatBox() {
-  const { chatBegin, setChatBegin } = useChatContext();
+function ChatBox({ sendChat }: { sendChat: (prompt: string) => void }) {
+  const { chatBegin, setPrompt } = useChatContext();
+  const [value, setValue] = useState<string>("");
+  const [focused, setFocused] = useState(true);
+
+
+  const handleSubmit = () => {
+    setPrompt(value);
+    sendChat(value);
+    setValue("");
+  }
 
   return (
     <section className=" flex h-full w-full flex-col items-center justify-center">
@@ -35,7 +45,7 @@ function ChatBox() {
               className="transition-transform duration-300 ease-out group-hover:rotate-90"
             />
 
-            <p className="font-lora text-5xl" onClick={setChatBegin}>
+            <p className="font-lora text-5xl">
               Velocity
             </p>
           </motion.div>
@@ -81,11 +91,14 @@ function ChatBox() {
         <Field>
           <motion.div
             layout
-            className="rounded-2xl border border-black/10 bg-secbg p-2 sm:p-3 shadow-xs"
+            data-active={focused}
+            className="ai-border rounded-2xl border group border-black/10 bg-secbg p-2 sm:p-3 shadow-xs"
           >
             <Textarea
               id="textarea-message"
               placeholder="Type your Ticket here."
+              onChange={(e) => setValue(e.target.value)}
+              value={value}
               className="w-full max-h-36 sm:max-h-48 min-h-[44px] resize-none border-none bg-transparent! text-base sm:text-sm thin-scrollbar focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
             />
 
@@ -101,6 +114,7 @@ function ChatBox() {
               <button
                 type="button"
                 aria-label="Send message"
+                onClick={handleSubmit}
                 className="flex h-8 w-8 sm:h-7 sm:w-7 items-center justify-center rounded-full bg-black transition-transform hover:scale-105 active:scale-95"
               >
                 <ArrowUp size={18} className="text-white/90" />

@@ -4,6 +4,7 @@ import "./globals.css";
 import LocalFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "@velocity/contexts";
+import ReactQueryClientProvider from "@/provider/queryclient";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,9 +59,11 @@ export default function RootLayout({ children }: LayoutProps) {
       className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <ReactQueryClientProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </ReactQueryClientProvider>
         <Toaster
           position="top-right"
           reverseOrder={false}

@@ -5,7 +5,9 @@ import { ApiResponse, postApi, VELOCITY_CHAT } from "@velocity/axios";
 import { Repositories } from "../../types/chat";
 
 export class ChatServices {
-    public static async chat(prompt: string, repositoriesId?: string) {
+    public static async chat(prompt: string, repositoriesId?: string | null) {
+        console.log(prompt, repositoriesId)
+        if (prompt.trim() == "") return null;
         try {
             if (!repositoriesId || typeof repositoriesId === 'undefined') {
                 // -- New chat flow

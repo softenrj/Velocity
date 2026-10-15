@@ -17,20 +17,20 @@ function index({ chatId }: { chatId?: string }) {
             <ChatContextProvider>
                 <section className='flex flex-1 min-h-0 w-full'>
 
-                <SideNavbar />
+                    <SideNavbar />
 
-                <ResizablePanelGroup>
-                    <ResizablePanel maxSize={"24%"} minSize={"12%"} defaultSize={"20%"}>
-                        <ChatPanel />
-                    </ResizablePanel>
+                    <ResizablePanelGroup>
+                        <ResizablePanel maxSize={"24%"} minSize={"12%"} defaultSize={"20%"}>
+                            <ChatPanel />
+                        </ResizablePanel>
 
-                    <ResizableHandle className='bg-black/10 w-px' />
+                        <ResizableHandle className='bg-black/10 w-px' />
 
-                    <ResizablePanel>
-                        <Main />
-                    </ResizablePanel>
-                </ResizablePanelGroup>
-            </section>
+                        <ResizablePanel>
+                            <Main chatId={chatId} />
+                        </ResizablePanel>
+                    </ResizablePanelGroup>
+                </section>
             </ChatContextProvider>
         </div>
     )

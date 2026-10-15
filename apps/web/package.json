@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.104.2",
     "@velocity/assets": "workspace:*",
     "@velocity/blocks": "catalog:",
     "@velocity/contexts": "workspace:*",
