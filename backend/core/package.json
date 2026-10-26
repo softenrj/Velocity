@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch index.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "development": "./index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
@@ -20,6 +22,7 @@
   },
   "dependencies": {
     "@types/node": "^26.6.4",
+    "@velocity/aes-gcm": "workspace:*",
     "@velocity/database": "workspace:*",
     "@velocity/error-handler": "workspace:*"
   },

@@ -7,6 +7,12 @@ import * as ChatController from "../controller/chat.controller.js";
 
 const router: Router = Router();
 
+router.post('/api-key/:id', isAuthorized, ChatController.setApiKey)
+router.post('/api-key/rotate/:id', isAuthorized, ChatController.rotateApiKey)
+router.get('/api-keys', isAuthorized, ChatController.getApiKeys)
+router.get('/api-keys/:provider', isAuthorized, ChatController.getApiKey)
+router.delete('/api-keys/:provider', isAuthorized, ChatController.deleteApiKey)
+
 router.post('/chat', isAuthorized, ChatController.chatV1)
 router.post('/chat/:repositoriesId', isAuthorized, ChatController.chatV1)
 router.get('/chat/stream/validate/:jobId', isAuthorized, ChatController.validateSSEEvent)

@@ -10,3 +10,6 @@ export type { ISession } from "./src/session.model.js";
 
 export { Repositories } from "./src/repositories.model.js";
 export type { IRepositories } from "./src/repositories.model.js";
+
+export { ApiKeys, AIProvider } from "./src/apikeys.model.js";
+export type { IApiKey } from "./src/apikeys.model.js";

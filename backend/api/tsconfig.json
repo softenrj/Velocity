@@ -4,6 +4,7 @@
     "rootDir": ".",
     "outDir": "./dist",
     "types": ["node"],
-    "lib": ["ESNext"]
+    "lib": ["ESNext"],
+    "customConditions": ["development"]
   }
 }
