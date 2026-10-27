@@ -12,6 +12,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "development": "./index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
@@ -20,6 +21,10 @@
   "dependencies": {
     "@google/genai": "catalog:",
     "@types/node": "^26.6.5",
+    "@velocity/aes-gcm": "workspace:*",
+    "@velocity/database": "workspace:*",
+    "@velocity/error-handler": "workspace:*",
+    "@velocity/sse": "workspace:*",
     "express": "^5.3.0"
   }
 }

@@ -318,6 +318,9 @@ importers:
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.5
+      '@velocity/ai-engine':
+        specifier: 'catalog:'
+        version: link:../../packages/ai-engine
       '@velocity/core':
         specifier: 'catalog:'
         version: link:../core
@@ -327,6 +330,9 @@ importers:
       '@velocity/error-handler':
         specifier: 'catalog:'
         version: link:../../packages/error-handler
+      '@velocity/sse':
+        specifier: 'catalog:'
+        version: link:../services/SSE
       cookie-parser:
         specifier: 'catalog:'
         version: 1.4.7
@@ -411,6 +417,18 @@ importers:
         specifier: ^26.6.5
         version: 26.6.5
 
+  backend/services/SSE:
+    dependencies:
+      '@types/express':
+        specifier: ^5.0.6
+        version: 5.0.6
+      '@types/node':
+        specifier: ^26.6.5
+        version: 26.6.5
+      express:
+        specifier: ^5.3.0
+        version: 5.3.0(supports-color@7.2.0)
+
   packages/ai-engine:
     dependencies:
       '@google/genai':
@@ -419,6 +437,18 @@ importers:
       '@types/node':
         specifier: ^26.6.5
         version: 26.6.5
+      '@velocity/aes-gcm':
+        specifier: workspace:*
+        version: link:../../backend/services/AES-GCM
+      '@velocity/database':
+        specifier: workspace:*
+        version: link:../../backend/database
+      '@velocity/error-handler':
+        specifier: workspace:*
+        version: link:../error-handler
+      '@velocity/sse':
+        specifier: workspace:*
+        version: link:../../backend/services/SSE
       express:
         specifier: ^5.3.0
         version: 5.3.0(supports-color@7.2.0)

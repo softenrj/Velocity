@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Raj
 // See LICENSE for details.
 
-import express from "express";
+import express, { Request, Response } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import compression from "compression";
@@ -23,7 +23,17 @@ app.use(express.json({}));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser())
 
-app.use(compression());
+app.use(compression({ filter: shouldCompress }))
+
+function shouldCompress(req: Request, res: Response) {
+    if (req.headers['x-no-compression']) {
+        // don't compress responses with this request header
+        return false
+    }
+
+    // fallback to standard filter function
+    return compression.filter(req, res)
+}
 
 const allowedOrigins = ["http://localhost:3000", "https://velocitytest.vercel.app"];
 app.use(cors({

@@ -35,7 +35,7 @@ class AI_API_KEY {
             isRevoked: false
         });
 
-        return { ...apiKey, iv: null, algorithm: null, authTag: null, encryptedKey: null };
+        return { ...apiKey.toObject(), iv: null, algorithm: null, authTag: null, encryptedKey: null };
     }
 
     public resolveApiKey = async (userId: string, provider?: AIProvider): Promise<{ provider: AIProvider, key: string }> => {

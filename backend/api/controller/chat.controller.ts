@@ -7,6 +7,8 @@ import { InitializeChat, aiApiKeyService } from "@velocity/core";
 import { AIProvider, Repositories } from "@velocity/database";
 import mongoose from "mongoose";
 import { sendResponse } from "../types/api.type.js";
+import { SSE_EVENT_KEYS, sseManager } from "@velocity/sse";
+import { AiEngine } from "@velocity/ai-engine";
 
 export const chatV1 = async (req: Request, res: Response) => {
     const userId = req.userId;
@@ -18,29 +20,55 @@ export const chatV1 = async (req: Request, res: Response) => {
     }
 
     let repositorie = null;
-    let response = "yet empty";
 
     if (!repositoriesId) {
         repositorie = await InitializeChat.initilize(userId, prompt);
     }
-    // TODO - generate response
-    // SSE event
 
-    res.status(200).json({ success: true, message: "Successfully generated chat", data: { repositorie, jobId: "ram" } })
+    // SSE event
+    const jobId = sseManager.createJobId();
+    await AiEngine.generateResponse(userId, jobId, prompt, AIProvider.GOOGLE);
+
+    res.status(200).json({ success: true, message: "Successfully generated chat", data: { repositorie, jobId: jobId } })
 }
 
 export const validateSSEEvent = async (req: Request, res: Response): Promise<void> => {
-    // TODO validate using class
+    const userId = req.userId;
+    const jobId = req.params?.jobId as string;
+    const key = req.query.key as SSE_EVENT_KEYS;
+
+    if (!userId) {
+        throw new VelocityError({ statusCode: 401, message: "UnAuthorized Access" });
+    }
+
+    if (!jobId) throw new VelocityError({ statusCode: 400, message: "Evalid or Missing Job Id" });
+
+    if (!Object.values(SSE_EVENT_KEYS).includes(key)) throw new VelocityError({ statusCode: 401, message: "Envalid Request" });
+
+    sseManager.setAuthUser(userId, key, jobId);
 
     sendResponse(res, 200, { success: 'true', status: 200, message: 'Successfully validated SSE event' })
 }
 
 export const chatStream = async (req: Request, res: Response): Promise<void> => {
-    // TODO - generate response
     // SSE event
+    const jobId = req.params?.jobId as string;
+    const key = req.query.key as SSE_EVENT_KEYS;
 
+    if (!jobId) throw new VelocityError({ statusCode: 400, message: "Evalid or Missing Job Id" });
 
-    sendResponse(res, 200, { success: 'true', status: 200, message: 'Successfully generated chat' })
+    if (!Object.values(SSE_EVENT_KEYS).includes(key)) throw new VelocityError({ statusCode: 400, message: "Envalid Request" });
+
+    if (!sseManager.isAuthUser(jobId, key)) throw new VelocityError({ statusCode: 403, message: "Not Allowed to Access this Stream" });
+
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
+    res.setHeader("X-Accel-Buffering", "no");
+    res.flushHeaders();
+    sseManager.addUser(jobId, res);
+
+    res.on("close", () => sseManager.removeUser(jobId));
 }
 
 export const getRepositories = async (req: Request, res: Response) => {

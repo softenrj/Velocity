@@ -29,6 +29,7 @@ catalog:
   "@types/node": ^26.6.4
   "@types/react": ^19.3.0
   '@velocity/aes-gcm': workspace:*
+  '@velocity/ai-engine': workspace:*
   "@velocity/assets": workspace:*
   "@velocity/axios": workspace:*
   "@velocity/blocks": workspace:*
@@ -36,6 +37,7 @@ catalog:
   "@velocity/core": workspace:*
   "@velocity/database": workspace:*
   "@velocity/error-handler": workspace:*
+  '@velocity/sse': workspace:*
   "@velocity/tailwind-config": workspace:*
   "@velocity/ui": workspace:*
   "@vilocity/ui": workspace:*
